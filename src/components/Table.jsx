@@ -40,7 +40,13 @@ const TrafficDataTable = () => {
         const result = await response.json();
 
         if (result && result.length > 0) {
-          setHeaders(Object.keys(result[0]));
+          
+          // Collect all unique keys from all objects
+          const allHeaders = Array.from(
+            new Set(result.flatMap(obj => Object.keys(obj)))
+          );
+
+          setHeaders(allHeaders); // Update headers dynamically
           setData(result);
         } else {
           setData([]);
@@ -79,7 +85,12 @@ const TrafficDataTable = () => {
 
       const result = await response.json();
       if (result && result.length > 0) {
-        setHeaders(Object.keys(result[0]));
+        // Collect all unique keys from all objects
+        const allHeaders = Array.from(
+		        new Set(result.flatMap(obj => Object.keys(obj)))
+        );
+
+        setHeaders(allHeaders); // Update headers dynamically
         setData(result);
       } else {
         setData([]);
@@ -109,9 +120,11 @@ const TrafficDataTable = () => {
             <tr key={rowIndex}>
               {headers.map((header, colIndex) => (
                 <td key={colIndex} data-label={header}>
-                  {header.toLowerCase().includes('time')
-                    ? convertUnixToDate(row[header])
-                    : row[header]}
+                  {row[header] !== undefined 
+                    ? header.toLowerCase().includes('time')
+                      ? convertUnixToDate(row[header])
+                      : row[header]
+                    : "-"}
                 </td>
               ))}
             </tr>
