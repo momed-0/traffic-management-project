@@ -4,8 +4,11 @@ import './Table.css';
 const TrafficDataTable = () => {
   const [data, setData] = useState([]);
   const [headers, setHeaders] = useState([]);
+  const [selectedRoad, setSelectedRoad] = useState(""); //dropdown state
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
+
+  const endpoint = process.env.ENDPOINT // add endpoint here
 
   // Function to convert a date string to a Unix timestamp
   const convertDateToUnix = (dateString) => {
@@ -31,23 +34,16 @@ const TrafficDataTable = () => {
   useEffect(() => {
     const fetchTrafficDataInitial = async () => {
       try {
-        const response = await fetch('https://50vrn9obe2.execute-api.us-east-1.amazonaws.com/API1/Count?start_time=1737184640&end_time=1737184651');
+        const response = await fetch(`${endpoint}/palayam?start_time=1739305574&end_time=1739305588`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const result = await response.json();
-
-        if (result && result.length > 0) {
-          
-          // Collect all unique keys from all objects
-          const allHeaders = Array.from(
-            new Set(result.flatMap(obj => Object.keys(obj)))
-          );
-
-          setHeaders(allHeaders); // Update headers dynamically
-          setData(result);
+        if (result.body && result.body.length > 0) {
+          setHeaders(Object.keys(result.body[0])); // find the headers
+          setData(result.body);
         } else {
           setData([]);
           alert("No data found for the provided time range.");
@@ -71,7 +67,7 @@ const TrafficDataTable = () => {
     const endUnix = convertDateToUnix(endTime);
 
     try {
-      const url = `https://50vrn9obe2.execute-api.us-east-1.amazonaws.com/API1/Count?start_time=${startUnix}&end_time=${endUnix}`;
+      const url = `${endpoint}/${selectedRoad}?start_time=${startUnix}&end_time=${endUnix}`;
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -84,14 +80,10 @@ const TrafficDataTable = () => {
       }
 
       const result = await response.json();
-      if (result && result.length > 0) {
-        // Collect all unique keys from all objects
-        const allHeaders = Array.from(
-		        new Set(result.flatMap(obj => Object.keys(obj)))
-        );
-
-        setHeaders(allHeaders); // Update headers dynamically
-        setData(result);
+      if (result.body && result.body.length > 0) {
+        
+        setHeaders(Object.keys(result.body[0])); 
+        setData(result.body);
       } else {
         setData([]);
         alert("No data found for the provided time range.");
@@ -105,7 +97,6 @@ const TrafficDataTable = () => {
     if (data.length === 0) {
       return <p>No data available for the selected time range.</p>;
     }
-
     return (
       <table className="table-div-table">
         <thead>
@@ -137,27 +128,39 @@ const TrafficDataTable = () => {
   return (
     <div className="table-div">
       <h1>Traffic Data</h1>
-      <div>
-        <label>
-          Start Time:{" "}
-          <input
-            type="datetime-local" // Use datetime-local for date and time input
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-            placeholder="Enter start time (YYYY-MM-DD HH:MM:SS)"
-          />
-        </label>
-        <label>
-          End Time:{" "}
-          <input
-            type="datetime-local" // Use datetime-local for date and time input
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
-            placeholder="Enter end time (YYYY-MM-DD HH:MM:SS)"
-          />
+      <label>
+        Select Road:{" "}
+        <select value={selectedRoad} onChange={(e) => setSelectedRoad(e.target.value)}>
+          <option value="">-- Select a Road --</option>
+          <option value="palayam">Palayam</option>
+          <option value="stadiumJn">Stadium Jn</option>
+          <option value="highway">Highway</option>
+        </select>
+      </label>
+      {/* Show start and end time only if a road is selected} */}
+      {selectedRoad && (
+        <>
+          <label>
+            Start Time:{" "}
+            <input
+              type="datetime-local" // Use datetime-local for date and time input
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+              placeholder="Enter start time (YYYY-MM-DD HH:MM:SS)"
+            />
+          </label>
+          <label>
+            End Time:{" "}
+            <input
+              type="datetime-local" // Use datetime-local for date and time input
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+              placeholder="Enter end time (YYYY-MM-DD HH:MM:SS)"
+            />
         </label>
         <button onClick={fetchTrafficData}>Fetch Data</button>
-      </div>
+        </>
+      )}
       <div>{data.length > 0 ? renderTable() : <p>Loading...</p>}</div>
     </div>
   );
