@@ -8,7 +8,7 @@ const TrafficDataTable = () => {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
-  const endpoint = process.env.ENDPOINT // add endpoint here
+  const endpoint = process.env.REACT_APP_ENDPOINT // add endpoint here
 
   // Function to convert a date string to a Unix timestamp
   const convertDateToUnix = (dateString) => {
