@@ -14,7 +14,7 @@ const App = () => {
     try {
       const url = `${endpoint}/count/${road}?start_time=${startUnix}&end_time=${endUnix}`;
       const response = await fetch(url, {
-        method: "GET",
+        method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },
       });
 
@@ -23,8 +23,10 @@ const App = () => {
       }
 
       const result = await response.json();
-      if (result.body && result.body.length > 0) {
-        setData(result.body);
+      const body = JSON.parse(result.body)
+
+      if (body && body.length > 0) {
+        setData(body);
       } else {
         setData([]);
         alert("No data found for the provided time range.");

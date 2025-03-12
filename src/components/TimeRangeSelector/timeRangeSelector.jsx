@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { initConfig } from "../config";
 
 const convertDateToUnix = (dateString) => {
   return Math.floor(new Date(dateString).getTime() / 1000);
 };
 
-const TimeRangeSelector = ({ onFetchData , initData}) => {
-  const [selectedRoad, setSelectedRoad] = useState(initConfig[0]); // show initial data on selectors
-  const [startTime, setStartTime] = useState(new Date(initConfig[1] * 1000).toISOString().slice(0, 16));
-  const [endTime, setEndTime] = useState(new Date(initConfig[2] * 1000).toISOString().slice(0, 16));
+const TimeRangeSelector = ({ onFetchData}) => {
+  const [selectedRoad, setSelectedRoad] = useState(); // show initial data on selectors
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
 
   const handleFetchData = () => {
@@ -33,7 +32,7 @@ const TimeRangeSelector = ({ onFetchData , initData}) => {
           <option value="highway">Highway</option>
         </select>
       </label>
-      {selectedRoad && (
+      { selectedRoad && (
         <>
           <label>
             Start Time:

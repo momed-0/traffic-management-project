@@ -66,7 +66,7 @@ const initData =[
   {"road_name": "palayam", "Bus": 0, "Toto": 5, "Auto-Rickshaw": 11, "Car": 1, "HCV": 0, "detection_time": 1739305584, "Bike": 0, "LCV": 0}, 
   {"road_name": "palayam", "Bus": 2, "Toto": 2, "Auto-Rickshaw": 16, "Car": 0, "HCV": 0, "detection_time": 1739305588, "Bike": 0, "LCV": 0}
   ];
-const initConfig = ["palayam",1739305574,1739305588];
+const initConfig = ["palayam",1739305574000,1739305588000];
 
   const vehicleIcons = {
     Car: new L.Icon({ iconUrl: carImg, iconSize: [20, 20] }),

@@ -33,7 +33,7 @@ const Map = ({ vehicleData }) => {
 
   const currentData = vehicleData[currentIndex] || {};
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex",marginLeft: "15px", padding: "10px",borderRadius: "5px", height: "fit-content" }}>
       <MapContainer 
         center={roadCenter} 
         zoom={22} 
@@ -41,7 +41,7 @@ const Map = ({ vehicleData }) => {
         zoomControl={false} 
         scrollWheelZoom={false} 
         doubleClickZoom={false} 
-        dragging={true}
+        dragging={false}
         >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <Polyline positions={roadPath} color="blue" weight={0.5} />
