@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import './Table.css';
 
-const TrafficDataTable = () => {
-  const [data, setData] = useState([]);
+const TrafficDataTable = ({data, setData}) => {
+
   const [headers, setHeaders] = useState([]);
   const [selectedRoad, setSelectedRoad] = useState(""); //dropdown state
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
-  const endpoint = process.env.ENDPOINT // add endpoint here
+  const endpoint = process.env.REACT_APP_API_ENDPOINT // add endpoint here
 
   // Function to convert a date string to a Unix timestamp
   const convertDateToUnix = (dateString) => {
@@ -34,7 +34,9 @@ const TrafficDataTable = () => {
   useEffect(() => {
     const fetchTrafficDataInitial = async () => {
       try {
-        const response = await fetch(`${endpoint}/palayam?start_time=1739305574&end_time=1739305588`);
+        const response = await fetch(`${endpoint}/count/palayam?start_time=1739305574&end_time=1739305588`, {
+          method: "POST",
+        },);
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -67,7 +69,7 @@ const TrafficDataTable = () => {
     const endUnix = convertDateToUnix(endTime);
 
     try {
-      const url = `${endpoint}/${selectedRoad}?start_time=${startUnix}&end_time=${endUnix}`;
+      const url = `${endpoint}/count/${selectedRoad}?start_time=${startUnix}&end_time=${endUnix}`;
       const response = await fetch(url, {
         method: 'GET',
         headers: {
