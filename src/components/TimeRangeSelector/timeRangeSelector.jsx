@@ -22,7 +22,6 @@ const TimeRangeSelector = ({ onFetchData}) => {
 
   return (
     <div>
-      <h2>Select Time Range</h2>
       <label>
         Select Road:
         <select value={selectedRoad} onChange={(e) => setSelectedRoad(e.target.value)}>

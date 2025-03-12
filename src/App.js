@@ -5,12 +5,15 @@ import Map from "./components/Map/map";
 import TimeRangeSelector from "./components/TimeRangeSelector/timeRangeSelector";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { initData } from "./components/config";
+import WorkInProgress from "./components/workInProgress";
 
 const App = () => {
   const [data, setData] = useState(initData);
+  const [loading, setLoading] = useState(false);
   const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
   const fetchTrafficData = async (road, startUnix, endUnix) => {
+    setLoading(true); // Show loading animation
     try {
       const url = `${endpoint}/count/${road}?start_time=${startUnix}&end_time=${endUnix}`;
       const response = await fetch(url, {
@@ -33,6 +36,8 @@ const App = () => {
       }
     } catch (error) {
       console.error("Error fetching traffic data:", error);
+    } finally {
+      setLoading(false); // Hide loading animation
     }
   };
 
@@ -41,10 +46,18 @@ const App = () => {
       <div className="App">
         <Header />
         <TimeRangeSelector onFetchData={fetchTrafficData} />
+        {loading && (
+          <div className="loading-overlay">
+            <div className="spinner"></div>
+            <p>Loading data...</p>
+          </div>
+        )}
         <Routes>
           <Route path="/" element={<LandingPage data={data} />} />
           <Route path="/traffic-management-project" element={<LandingPage data={data} />} />
           <Route path="/map" element={<Map vehicleData={data}/>} />
+          <Route path="/data" element={<WorkInProgress/>} />
+          <Route path="/x" element={<WorkInProgress />} />
         </Routes>
       </div>
     </Router>
