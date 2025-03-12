@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, CircleMarker, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { roadPath,roadCenter, vehicleColors,legendVehicle} from "./data/data";
+import { roadPath,roadCenter, vehicleColors,legendVehicle} from "../config";
 
 const Map = ({ vehicleData }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isRunning, setIsRunning] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     if (!vehicleData || vehicleData.length === 0) return;
@@ -18,7 +18,7 @@ const Map = ({ vehicleData }) => {
     }, 1000); // Move to next timestamp every second
 
     return () => clearInterval(interval);
-  }, [isRunning,vehicleData]);
+  }, [isRunning, vehicleData]);
 
 
   const handleToggle = () => {
@@ -27,7 +27,7 @@ const Map = ({ vehicleData }) => {
 
   const handleReset = () => {
     setCurrentIndex(0); // Restart from first timestamp
-    setIsRunning(true); // Start running again
+    setIsRunning(false); // stop the execution by default
   };
 
 
@@ -77,7 +77,7 @@ const Map = ({ vehicleData }) => {
         
         <div style={{ marginTop: "10px" }}>
           <button onClick={handleToggle} style={buttonStyle}>
-            {isRunning ? "Stop" : "Resume"}
+            {isRunning ? "Stop" : "Start"}
           </button>
           <button onClick={handleReset} style={buttonStyle}>Reset</button>
         </div>

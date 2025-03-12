@@ -1,3 +1,17 @@
+.nav-link {
+    text-decoration: none;
+    color: black;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+  }
+  
+.nav-link.active {
+    color: brown; /* Highlight active link */
+    font-weight: bold;
+    border-bottom: 2px solid brown;
+}
+
+
 .header-div-ul {
     display: flex;
     justify-content: space-around;
