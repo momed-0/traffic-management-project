@@ -14,10 +14,10 @@ const Header = () => {
             <NavLink to="/map" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Map</NavLink>
           </li>
           <li>
-            <NavLink to="/data" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Data</NavLink>
+            <NavLink to="/live" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Live Map</NavLink>
           </li>
           <li>
-            <NavLink to="/x" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>X</NavLink>
+            <NavLink to="/statistics" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Statistics</NavLink>
           </li>
         </ul>
       </nav>

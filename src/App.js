@@ -56,8 +56,8 @@ const App = () => {
           <Route path="/" element={<LandingPage data={data} />} />
           <Route path="/traffic-management-project" element={<LandingPage data={data} />} />
           <Route path="/map" element={<Map vehicleData={data}/>} />
-          <Route path="/data" element={<WorkInProgress/>} />
-          <Route path="/x" element={<WorkInProgress />} />
+          <Route path="/live" element={<WorkInProgress/>} />
+          <Route path="/statistics" element={<WorkInProgress />} />
         </Routes>
       </div>
     </Router>
