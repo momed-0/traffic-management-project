@@ -1,8 +1,3 @@
-import carImg from "./Map/car.png"; // Add vehicle images in public folder
-import bikeImg from "./Map/bike.png";
-import autoImg from "./Map/auto.png";
-import busImg from "./Map/bus.png";
-import L from "leaflet";
 
 // Define a single road path (latitude, longitude)
 const roadPath = [
@@ -61,39 +56,28 @@ const roadPath = [
 const roadCenter = [11.320747, 75.933407];
   
 const initData =[
-  {"road_name": "palayam", "Bus": 0, "Toto": 0, "Auto-Rickshaw": 3, "Car": 0, "HCV": 0, "detection_time": 1739305574, "Bike": 0, "LCV": 0},
-  {"road_name": "palayam", "Bus": 0, "Toto": 4, "Auto-Rickshaw": 6, "Car": 1, "HCV": 0, "detection_time": 1739305579, "Bike": 0, "LCV": 0},
-  {"road_name": "palayam", "Bus": 0, "Toto": 5, "Auto-Rickshaw": 11, "Car": 1, "HCV": 0, "detection_time": 1739305584, "Bike": 0, "LCV": 0}, 
-  {"road_name": "palayam", "Bus": 2, "Toto": 2, "Auto-Rickshaw": 16, "Car": 0, "HCV": 0, "detection_time": 1739305588, "Bike": 0, "LCV": 0}
+  {"road_name": "palayam", "bus": 0, "bicycle": 0, "Auto": 3, "car": 0, "truck": 0, "detection_time": 1739305574, "motorcycle": 0},
+  {"road_name": "palayam", "bus": 0, "bicycle": 4, "Auto": 6, "car": 1, "truck": 0, "detection_time": 1739305579, "motorcycle": 0},
+  {"road_name": "palayam", "bus": 0, "bicycle": 5, "Auto": 11, "car": 1, "truck": 0, "detection_time": 1739305584, "motorcycle": 0}, 
+  {"road_name": "palayam", "bus": 2, "bicycle": 2, "Auto": 16, "car": 0, "truck": 0, "detection_time": 1739305588, "motorcycle": 0}
   ];
 const initConfig = ["palayam",1739305574000,1739305588000];
 
-  const vehicleIcons = {
-    Car: new L.Icon({ iconUrl: carImg, iconSize: [20, 20] }),
-    Bike: new L.Icon({ iconUrl: bikeImg, iconSize: [15, 15] }),
-    "Auto-Rickshaw": new L.Icon({ iconUrl: autoImg, iconSize: [18, 18] }),
-    Bus: new L.Icon({ iconUrl: busImg, iconSize: [25, 25] }),
-    Toto: new L.Icon({ iconUrl: autoImg, iconSize: [25, 25] }),
-    HCV: new L.Icon({ iconUrl: busImg, iconSize: [25, 25] }),
-    LCV: new L.Icon({ iconUrl: carImg, iconSize: [25, 25] }),
-  };
-  
-  
   const vehicleColors = {
-    Car: { color: "red", size: 4 },
-    Bike: { color: "blue", size: 4 },
-    "Auto-Rickshaw": { color: "green", size: 4 },
-    Bus: { color: "orange", size: 4 },
-    Toto: { color: "green", size: 4 },
-    HCV: { color: "orange", size: 4 },
-    LCV: { color: "red", size: 4 },
+    car: { color: "red", size: 4 },
+    motorcycle: { color: "blue", size: 4 },
+    Auto: { color: "green", size: 4 },
+    bus: { color: "orange", size: 4 },
+    bicycle: { color: "blue", size: 4 },
+    truck: { color: "orange", size: 4 },
   };
 
 
 const legendVehicle = { // because of mismatch of vehicles that we are displaying
-    Car: { color: "red", size: 6 },
-    Bike: { color: "blue", size: 4 },
-    "Auto-Rickshaw": { color: "green", size: 5 },
-    Bus: { color: "orange", size: 8 },
+    car: { color: "red", size: 6 },
+    motorcycle: { color: "blue", size: 4 },
+    auto: { color: "green", size: 5 },
+    bus: { color: "orange", size: 8 },
 };
-export {roadPath,initData, roadCenter,vehicleIcons, vehicleColors,legendVehicle,initConfig}
+export {roadPath,initData, roadCenter, vehicleColors,legendVehicle,initConfig}
+

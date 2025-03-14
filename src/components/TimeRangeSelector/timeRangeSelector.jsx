@@ -27,6 +27,7 @@ const TimeRangeSelector = ({ onFetchData}) => {
         <select value={selectedRoad} onChange={(e) => setSelectedRoad(e.target.value)}>
           <option value="">-- Select a Road --</option>
           <option value="palayam">Palayam</option>
+          <option value="PuthiyaStand">Puthiya Stand</option>
           <option value="stadiumJn">Stadium Jn</option>
           <option value="highway">Highway</option>
         </select>
