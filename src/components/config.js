@@ -213,13 +213,6 @@ const roadCenter = { "rajpath" : [11.320747, 75.933407],
                     "highway": [11.210638, 75.861173]
 };
   
-// const initData =[
-//   {"road_name": "palayam", "bus": 0, "bicycle": 0, "Auto": 3, "car": 0, "truck": 0, "detection_time": 1739305574, "motorcycle": 0},
-//   {"road_name": "palayam", "bus": 0, "bicycle": 4, "Auto": 6, "car": 1, "truck": 0, "detection_time": 1739305579, "motorcycle": 0},
-//   {"road_name": "palayam", "bus": 0, "bicycle": 5, "Auto": 11, "car": 1, "truck": 0, "detection_time": 1739305584, "motorcycle": 0}, 
-//   {"road_name": "palayam", "bus": 2, "bicycle": 2, "Auto": 16, "car": 0, "truck": 0, "detection_time": 1739305588, "motorcycle": 0}
-//   ];
-
 // expected response from the server
 const initData =[
   {
