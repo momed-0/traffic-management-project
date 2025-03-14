@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, CircleMarker, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { roadPath,roadCenter, vehicleColors,legendVehicle} from "../config";
 
-const Map = ({ vehicleData }) => {
+const Map = ({ vehicleData , selectedRoad}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -35,7 +35,7 @@ const Map = ({ vehicleData }) => {
   return (
     <div style={{ display: "flex",marginLeft: "15px", padding: "10px",borderRadius: "5px", height: "fit-content" }}>
       <MapContainer 
-        center={roadCenter} 
+        center={roadCenter[selectedRoad]} 
         zoom={22} 
         style={{ width: "800px", height: "500px" }}
         zoomControl={false} 
@@ -44,18 +44,18 @@ const Map = ({ vehicleData }) => {
         dragging={false}
         >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Polyline positions={roadPath} color="blue" weight={0.5} />
+        <Polyline positions={roadPath[selectedRoad]} color="blue" weight={0.5} />
 
         
         {currentData &&
           Object.keys(currentData).map((type) => {
             if (type !== "road_name" && type !== "detection_time" && vehicleColors[type]) {
               return [...Array(currentData[type])].map((_, i) => {
-                const randomIndex = Math.floor(Math.random() * roadPath.length);
+                const randomIndex = Math.floor(Math.random() * roadPath[selectedRoad].length);
                 return (
                   <CircleMarker
                     key={`${type}-${i}`}
-                    center={roadPath[randomIndex]}
+                    center={roadPath[selectedRoad][randomIndex]}
                     radius={vehicleColors[type].size}
                     fillColor={vehicleColors[type].color}
                     color={vehicleColors[type].color}

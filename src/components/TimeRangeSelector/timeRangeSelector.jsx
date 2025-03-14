@@ -4,8 +4,7 @@ const convertDateToUnix = (dateString) => {
   return Math.floor(new Date(dateString).getTime() / 1000);
 };
 
-const TimeRangeSelector = ({ onFetchData}) => {
-  const [selectedRoad, setSelectedRoad] = useState(); // show initial data on selectors
+const TimeRangeSelector = ({ onFetchData, selectedRoad, setSelectedRoad}) => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
@@ -25,7 +24,6 @@ const TimeRangeSelector = ({ onFetchData}) => {
       <label>
         Select Road:
         <select value={selectedRoad} onChange={(e) => setSelectedRoad(e.target.value)}>
-          <option value="">-- Select a Road --</option>
           <option value="palayam">Palayam</option>
           <option value="PuthiyaStand">Puthiya Stand</option>
           <option value="stadiumJn">Stadium Jn</option>

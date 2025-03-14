@@ -10,6 +10,7 @@ import WorkInProgress from "./components/workInProgress";
 const App = () => {
   const [data, setData] = useState(initData);
   const [loading, setLoading] = useState(false);
+  const [selectedRoad, setSelectedRoad] = useState("palayam");
   const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
   const fetchTrafficData = async (road, startUnix, endUnix) => {
@@ -45,7 +46,7 @@ const App = () => {
     <Router>
       <div className="App">
         <Header />
-        <TimeRangeSelector onFetchData={fetchTrafficData} />
+        <TimeRangeSelector onFetchData={fetchTrafficData} selectedRoad={selectedRoad} setSelectedRoad={setSelectedRoad}/>
         {loading && (
           <div className="loading-overlay">
             <div className="spinner"></div>
@@ -55,7 +56,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LandingPage data={data} />} />
           <Route path="/traffic-management-project" element={<LandingPage data={data} />} />
-          <Route path="/map" element={<Map vehicleData={data}/>} />
+          <Route path="/map" element={<Map key={data.length} vehicleData={data} selectedRoad={selectedRoad}/>} />
           <Route path="/live" element={<WorkInProgress/>} />
           <Route path="/statistics" element={<WorkInProgress />} />
         </Routes>
