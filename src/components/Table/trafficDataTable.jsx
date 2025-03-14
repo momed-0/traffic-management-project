@@ -34,7 +34,11 @@ const TrafficDataTable = ({ data }) => {
             <tr key={rowIndex}>
               {headers.map((header, colIndex) => (
                 <td key={colIndex} data-label={header}>
-                  {header.toLowerCase().includes("time") ? convertUnixToDate(row[header]) : row[header] || 0}
+                  {header.toLowerCase().includes("time") 
+                    ? convertUnixToDate(row[header]) 
+                    : typeof row[header] === "object" && row[header] !== null
+                    ? Object.keys(row[header]).length // Count the number of keys inside vehicle categories
+                    : row[header] || 0}
                 </td>
               ))}
             </tr>
