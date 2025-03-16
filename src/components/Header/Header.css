@@ -3,8 +3,27 @@
     color: black;
     padding: 8px 12px;
     transition: color 0.3s ease;
+    -webkit-animation: tracking-in-expand-fwd-top 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand-fwd-top 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
   }
   
+
+@keyframes tracking-in-expand-fwd-top {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+      transform: translateY(-800px);
+    }
+    40% {
+      opacity: 0.6;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+}
 .nav-link.active {
     color: brown; /* Highlight active link */
     font-weight: bold;

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, CircleMarker, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { roadPath,roadCenter, vehicleColors,legendVehicle} from "../config";
+import { roadPath, roadCenter, vehicleColors, legendVehicle } from "../config";
+import "./map.css";
 
-const Map = ({ vehicleData , selectedRoad}) => {
+const Map = ({ vehicleData, selectedRoad }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     if (!vehicleData || vehicleData.length === 0) return;
-    if (!isRunning) return; 
+    if (!isRunning) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
@@ -20,33 +21,31 @@ const Map = ({ vehicleData , selectedRoad}) => {
     return () => clearInterval(interval);
   }, [isRunning, vehicleData]);
 
-
   const handleToggle = () => {
     setIsRunning((prev) => !prev); // Toggle between running and paused
   };
 
   const handleReset = () => {
     setCurrentIndex(0); // Restart from first timestamp
-    setIsRunning(false); // stop the execution by default
+    setIsRunning(false); // Stop the execution by default
   };
 
-
   const currentData = vehicleData[currentIndex] || {};
+
   return (
-    <div style={{ display: "flex",marginLeft: "15px", padding: "10px",borderRadius: "5px", height: "fit-content" }}>
-      <MapContainer 
-        center={roadCenter[selectedRoad]} 
-        zoom={22} 
-        style={{ width: "800px", height: "500px" }}
-        zoomControl={false} 
-        scrollWheelZoom={false} 
-        doubleClickZoom={false} 
+    <div className="map-container">
+      <MapContainer
+        center={roadCenter[selectedRoad]}
+        zoom={22}
+        className="leaflet-container"
+        zoomControl={false}
+        scrollWheelZoom={false}
+        doubleClickZoom={false}
         dragging={false}
-        >
+      >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <Polyline positions={roadPath[selectedRoad]} color="blue" weight={0.5} />
 
-        
         {currentData &&
           Object.keys(currentData).map((type) => {
             if (type !== "road_name" && type !== "detection_time" && vehicleColors[type]) {
@@ -67,52 +66,34 @@ const Map = ({ vehicleData , selectedRoad}) => {
             return null;
           })}
       </MapContainer>
-      <div style={{ marginLeft: "10px", padding: "10px", background: "white", borderRadius: "5px", height: "fit-content" }}>
-        <p style={{ fontSize: "14px", fontWeight: "bold", color: "#333" }}>
-           Time: {currentData.detection_time ? new Date(currentData.detection_time * 1000).toLocaleString() : "N/A"}
-        </p>
-        <p style={{ fontSize: "14px", fontWeight: "bold", color: "#333" }}>
-          Road: {currentData.road_name}
-        </p>
-        
-        <div style={{ marginTop: "10px" }}>
-          <button onClick={handleToggle} style={buttonStyle}>
+
+      <div className="controls-container">
+        <p>Time: {currentData.detection_time ? new Date(currentData.detection_time * 1000).toLocaleString() : "N/A"}</p>
+        <p>Road: {currentData.road_name}</p>
+
+        <div className="buttons-container">
+          <button onClick={handleToggle} className="button">
             {isRunning ? "Stop" : "Start"}
           </button>
-          <button onClick={handleReset} style={buttonStyle}>Reset</button>
+          <button onClick={handleReset} className="button">
+            Reset
+          </button>
         </div>
 
-        {Object.entries(legendVehicle).map(([type, { color, size }]) => (
-          <div key={type} style={{ display: "flex", alignItems: "center", marginBottom: "5px" }}>
-            <div
-              style={{
-                width: `${size * 2}px`,
-                height: `${size * 2}px`,
-                backgroundColor: color,
-                borderRadius: "50%",
-                marginRight: "10px",
-              }}
-            ></div>
-            <span>{type}</span>
-          </div>
-        ))}
+        <div className="legend-container">
+          {Object.entries(legendVehicle).map(([type, { color, size }]) => (
+            <div key={type} className="legend-item">
+              <div
+                className="legend-circle"
+                style={{ backgroundColor: color, width: `${size * 2}px`, height: `${size * 2}px` }}
+              ></div>
+              <span className="legend-text">{type}</span>
+            </div>
+          ))}
+        </div>
       </div>
-      
     </div>
   );
 };
-
-// Button styling
-const buttonStyle = {
-  margin: "5px",
-  padding: "2px 5px",
-  fontSize: "12px",
-  border: "none",
-  cursor: "pointer",
-  borderRadius: "5px",
-  backgroundColor: "#007BFF",
-  color: "white",
-};
-
 
 export default Map;
