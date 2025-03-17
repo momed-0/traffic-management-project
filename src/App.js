@@ -6,7 +6,8 @@ import TimeRangeSelector from "./components/TimeRangeSelector/timeRangeSelector"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { initData } from "./components/config";
 import WorkInProgress from "./components/workInProgress";
-import ProgressBar from "./components/ProgressBar/progressBar" ;
+import ProgressBar from "./components/ProgressBar/progressBar";
+import AnimatedSection from "./components/AnimatedSection/animatedSection";
 
 const App = () => {
   const [data, setData] = useState(initData);
@@ -14,6 +15,7 @@ const App = () => {
   const [selectedRoad, setSelectedRoad] = useState("palayam");
   const [isAppLoaded, setIsAppLoaded] = useState(false); // Track app loading state
   const [progress, setProgress] = useState(0); // Track progress bar progress
+  const [dataKey, setDataKey] = useState(0); // Key to force re-render of AnimatedSection
 
   const endpoint = process.env.REACT_APP_API_ENDPOINT;
 
@@ -35,6 +37,7 @@ const App = () => {
 
       if (body && body.length > 0) {
         setData(body);
+        setDataKey((prevKey) => prevKey + 1); // Update key to force re-render
       } else {
         setData([]);
         alert("No data found for the provided time range.");
@@ -88,17 +91,46 @@ const App = () => {
               </div>
             )}
             <Routes>
-              <Route path="/" element={<LandingPage data={data} />} />
+              <Route
+                path="/"
+                element={
+                  <AnimatedSection key={dataKey}>
+                    <LandingPage data={data} />
+                  </AnimatedSection>
+                }
+              />
               <Route
                 path="/traffic-management-project"
-                element={<LandingPage data={data} />}
+                element={
+                  <AnimatedSection key={dataKey}>
+                    <LandingPage data={data} />
+                  </AnimatedSection>
+                }
               />
               <Route
                 path="/map"
-                element={<Map key={data.length} vehicleData={data} selectedRoad={selectedRoad} />}
+                element={
+                  <AnimatedSection key={dataKey}>
+                    <Map key={data.length} vehicleData={data} selectedRoad={selectedRoad} />
+                  </AnimatedSection>
+                }
               />
-              <Route path="/live" element={<WorkInProgress />} />
-              <Route path="/statistics" element={<WorkInProgress />} />
+              <Route
+                path="/live"
+                element={
+                  <AnimatedSection>
+                    <WorkInProgress />
+                  </AnimatedSection>
+                }
+              />
+              <Route
+                path="/statistics"
+                element={
+                  <AnimatedSection>
+                    <WorkInProgress />
+                  </AnimatedSection>
+                }
+              />
             </Routes>
           </>
         )}
