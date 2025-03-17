@@ -12,7 +12,7 @@ import AnimatedSection from "./components/AnimatedSection/animatedSection";
 const App = () => {
   const [data, setData] = useState(initData);
   const [loading, setLoading] = useState(false);
-  const [selectedRoad, setSelectedRoad] = useState("palayam");
+  const [selectedRoad, setSelectedRoad] = useState("rajpath");
   const [isAppLoaded, setIsAppLoaded] = useState(false); // Track app loading state
   const [progress, setProgress] = useState(0); // Track progress bar progress
   const [dataKey, setDataKey] = useState(0); // Key to force re-render of AnimatedSection
