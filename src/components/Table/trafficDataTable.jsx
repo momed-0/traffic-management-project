@@ -1,4 +1,5 @@
 import React from "react";
+import EmptyData from "../EmptyData/EmptyData";
 import "./Table.css";
 
 const TrafficDataTable = ({ data }) => {
@@ -14,7 +15,8 @@ const TrafficDataTable = ({ data }) => {
   };
 
   if (!data || data.length === 0) {
-    return <p>No data available for the selected time range.</p>;
+    let text = "No data available for the selected time range!";
+    return <EmptyData displayText={text}/>;
   }
 
   const headers = Object.keys(data[0]);

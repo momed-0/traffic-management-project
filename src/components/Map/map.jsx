@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, CircleMarker, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { roadPath,roadCenter, vehicleColors,legendVehicle} from "../config";
 import { transformVehicleData } from "./transformVehicleData";
+import EmptyData from "../EmptyData/EmptyData";
 import "./map.css";
 
 const Map = ({ vehicleData, selectedRoad }) => {
@@ -41,9 +42,7 @@ const Map = ({ vehicleData, selectedRoad }) => {
     else text = "No data available for the selected time range!"
     return  (
       <div className="map-container">
-        <div className="empty-data-container">
-          <p>{text}</p>
-        </div>
+        <EmptyData displayText={text}/>
       </div>
     )
   }

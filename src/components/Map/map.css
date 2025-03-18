@@ -92,13 +92,3 @@
     font-size: 12px;
     color: #333;
   }
-
-  .empty-data-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 1.5rem;
-    color: #555;
-  }
-  
