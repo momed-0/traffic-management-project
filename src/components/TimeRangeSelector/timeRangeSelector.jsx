@@ -27,7 +27,7 @@ const TimeRangeSelector = ({ onFetchData, selectedRoad, setSelectedRoad }) => {
   return (
     <div className="time-range-selector">
       <label className="road-selector-label">
-        Select Road:
+        select an area:
         <select
           className="road-selector"
           value={selectedRoad}
@@ -43,7 +43,7 @@ const TimeRangeSelector = ({ onFetchData, selectedRoad, setSelectedRoad }) => {
       {selectedRoad && (
         <div className="time-inputs">
           <label className="date-label">
-            Start Date:
+            choose a Date:  
             <input
               type="date"
               value={selectedDate}
@@ -52,7 +52,7 @@ const TimeRangeSelector = ({ onFetchData, selectedRoad, setSelectedRoad }) => {
             />
           </label>
           <label className="time-label">
-            Start Time:
+            from:
             <input
               type="time"
               value={startTime}
@@ -62,7 +62,7 @@ const TimeRangeSelector = ({ onFetchData, selectedRoad, setSelectedRoad }) => {
             />
           </label>
           <label className="time-label">
-            End Time:
+            till:
             <input
               type="time"
               value={endTime}
