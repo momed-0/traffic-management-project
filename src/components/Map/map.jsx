@@ -35,6 +35,18 @@ const Map = ({ vehicleData, selectedRoad }) => {
   };
 
   const currentData = vehicleAnimated[currentIndex] || []; // array of vehicles in current timestamp with their unique id
+  if(!vehicleData || vehicleData.length === 0) {
+    let text = "";
+    if(!selectedRoad) text = "Please select a road, date, and provide both start and end times!"
+    else text = "No data available for the selected time range!"
+    return  (
+      <div className="map-container">
+        <div className="empty-data-container">
+          <p>{text}</p>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="map-container">
       <MapContainer
