@@ -80,11 +80,6 @@ const App = () => {
         {isAppLoaded && (
           <>
             <Header />
-            <TimeRangeSelector
-              onFetchData={fetchTrafficData}
-              selectedRoad={selectedRoad}
-              setSelectedRoad={setSelectedRoad}
-            />
             {loading && (
               <div className="loading-overlay">
                 <div className="spinner"></div>
@@ -96,6 +91,11 @@ const App = () => {
                 path="/"
                 element={
                   <AnimatedSection key={dataKey}>
+                    <TimeRangeSelector
+                      onFetchData={fetchTrafficData}
+                      selectedRoad={selectedRoad}
+                      setSelectedRoad={setSelectedRoad}
+                    />
                     <LandingPage data={data} />
                   </AnimatedSection>
                 }
@@ -104,6 +104,11 @@ const App = () => {
                 path="/traffic-management-project"
                 element={
                   <AnimatedSection key={dataKey}>
+                    <TimeRangeSelector
+                      onFetchData={fetchTrafficData}
+                      selectedRoad={selectedRoad}
+                      setSelectedRoad={setSelectedRoad}
+                    />
                     <LandingPage data={data} />
                   </AnimatedSection>
                 }
@@ -112,6 +117,11 @@ const App = () => {
                 path="/map"
                 element={
                   <AnimatedSection key={dataKey}>
+                    <TimeRangeSelector
+                      onFetchData={fetchTrafficData}
+                      selectedRoad={selectedRoad}
+                      setSelectedRoad={setSelectedRoad}
+                    />
                     <Map key={data.length} vehicleData={data} selectedRoad={selectedRoad} />
                   </AnimatedSection>
                 }
@@ -128,6 +138,11 @@ const App = () => {
                 path="/statistics"
                 element={
                   <AnimatedSection>
+                    <TimeRangeSelector
+                      onFetchData={fetchTrafficData}
+                      selectedRoad={selectedRoad}
+                      setSelectedRoad={setSelectedRoad}
+                    />
                     <TrafficStatistics data={data} selectedRoad={selectedRoad} />
                   </AnimatedSection>
                 }
