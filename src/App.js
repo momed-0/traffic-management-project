@@ -131,6 +131,22 @@ const App = () => {
                   </AnimatedSection>
                 }
               />
+              <Route
+                path="/simulation"
+                element={
+                  <AnimatedSection>
+                    <WorkInProgress />
+                  </AnimatedSection>
+                }
+              />
+              <Route
+                path="/traffic"
+                element={
+                  <AnimatedSection>
+                    <WorkInProgress />
+                  </AnimatedSection>
+                }
+              />
             </Routes>
           </>
         )}
