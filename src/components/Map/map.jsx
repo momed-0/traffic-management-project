@@ -50,7 +50,8 @@ const Map = ({ vehicleData, selectedRoad }) => {
         <Polyline positions={roadPath[selectedRoad]} color="blue" weight={0.5} />
 
         
-        { currentData.map((vehicle) => (
+        {
+         currentData.map((vehicle) => (
             <CircleMarker
               key={`${vehicle.type}-${vehicle.id}`}
               center={roadPath[selectedRoad][vehicle.index]}
@@ -61,10 +62,9 @@ const Map = ({ vehicleData, selectedRoad }) => {
             />
           ))}
       </MapContainer>
-
       <div className="controls-container">
-        <p>{vehicleData[currentIndex].detection_time ? new Date(vehicleData[currentIndex].detection_time * 1000).toLocaleString() : "N/A"}</p>
-        <p>Road: {vehicleData[currentIndex].road_name}</p>
+        <p>{vehicleData?.[currentIndex]?.detection_time ? new Date(vehicleData[currentIndex].detection_time * 1000).toLocaleString() : "N/A"}</p>
+        <p>Road: {vehicleData?.[currentIndex]?.road_name}</p>
 
         <div className="buttons-container">
           <button onClick={handleToggle} className="button">
