@@ -8,6 +8,7 @@ import { initData } from "./components/config";
 import WorkInProgress from "./components/workInProgress";
 import ProgressBar from "./components/ProgressBar/progressBar";
 import AnimatedSection from "./components/AnimatedSection/animatedSection";
+import TrafficStatistics from "./components/TrafficStatistics/TrafficStatistics";
 
 const App = () => {
   const [data, setData] = useState(initData);
@@ -127,7 +128,7 @@ const App = () => {
                 path="/statistics"
                 element={
                   <AnimatedSection>
-                    <WorkInProgress />
+                    <TrafficStatistics data={data} selectedRoad={selectedRoad} />
                   </AnimatedSection>
                 }
               />
