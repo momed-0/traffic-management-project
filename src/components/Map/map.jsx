@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, CircleMarker, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { roadPath,roadCenter, vehicleColors,legendVehicle} from "../config";
 import { transformVehicleData } from "./transformVehicleData";
+import EmptyData from "../EmptyData/EmptyData";
 import "./map.css";
 
 const Map = ({ vehicleData, selectedRoad }) => {
@@ -35,6 +36,16 @@ const Map = ({ vehicleData, selectedRoad }) => {
   };
 
   const currentData = vehicleAnimated[currentIndex] || []; // array of vehicles in current timestamp with their unique id
+  if(!vehicleData || vehicleData.length === 0) {
+    let text = "";
+    if(!selectedRoad) text = "Please select a road, date, and provide both start and end times!"
+    else text = "No data available for the selected time range!"
+    return  (
+      <div className="map-container">
+        <EmptyData displayText={text}/>
+      </div>
+    )
+  }
   return (
     <div className="map-container">
       <MapContainer
@@ -50,7 +61,8 @@ const Map = ({ vehicleData, selectedRoad }) => {
         <Polyline positions={roadPath[selectedRoad]} color="blue" weight={0.5} />
 
         
-        { currentData.map((vehicle) => (
+        {
+         currentData.map((vehicle) => (
             <CircleMarker
               key={`${vehicle.type}-${vehicle.id}`}
               center={roadPath[selectedRoad][vehicle.index]}
@@ -61,10 +73,9 @@ const Map = ({ vehicleData, selectedRoad }) => {
             />
           ))}
       </MapContainer>
-
       <div className="controls-container">
-        <p>{vehicleData[currentIndex].detection_time ? new Date(vehicleData[currentIndex].detection_time * 1000).toLocaleString() : "N/A"}</p>
-        <p>Road: {vehicleData[currentIndex].road_name}</p>
+        <p>{vehicleData?.[currentIndex]?.detection_time ? new Date(vehicleData[currentIndex].detection_time * 1000).toLocaleString() : "N/A"}</p>
+        <p>Road: {vehicleData?.[currentIndex]?.road_name}</p>
 
         <div className="buttons-container">
           <button onClick={handleToggle} className="button">
