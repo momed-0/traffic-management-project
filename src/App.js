@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
 import LandingPage from "./components/LandingPage/landingPage";
-=======
-import LandingPage from "./components/landingPage";
->>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
 import Header from "./components/Header/header";
 import Map from "./components/Map/map";
 import TimeRangeSelector from "./components/TimeRangeSelector/timeRangeSelector";
@@ -91,31 +87,17 @@ const App = () => {
               </div>
             )}
             <Routes>
-<<<<<<< HEAD
               {/* Home Page - No TimeRangeSelector */}
-=======
->>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
               <Route
                 path="/"
                 element={
                   <AnimatedSection key={dataKey}>
-<<<<<<< HEAD
-=======
-                    <TimeRangeSelector
-                      onFetchData={fetchTrafficData}
-                      selectedRoad={selectedRoad}
-                      setSelectedRoad={setSelectedRoad}
-                    />
->>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
                     <LandingPage data={data} />
                   </AnimatedSection>
                 }
               />
-<<<<<<< HEAD
 
               {/* Other Routes */}
-=======
->>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
               <Route
                 path="/traffic-management-project"
                 element={

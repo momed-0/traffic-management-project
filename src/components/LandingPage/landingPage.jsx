@@ -50,7 +50,8 @@ const LandingPage = () => {
       opacity: 0,
       y: 50,
       duration: 1,
-      ease: "power2.out",
+      ease:"power2.out",
+      willChange: "opacity, transform", // Hint to the browser for optimization
     });
 
     // Highlight cards animation
@@ -66,6 +67,7 @@ const LandingPage = () => {
           end: "bottom 20%", // Animation ends when the card is 20% out of view
           toggleActions: "play none none reverse", // Retrigger animation on scroll up and down
         },
+        willChange: "opacity, transform", // Hint to the browser for optimization
       });
     });
   }, []);
@@ -75,7 +77,7 @@ const LandingPage = () => {
       {/* Hero Section */}
       <div ref={heroRef} className="hero-section">
         <h1>Welcome to our Traffic Management System</h1>
-        <p>Smart Traffic Management at Your Fingertips.</p>
+        <p>modern traffic solutions at your fingertips.</p>
         <Link
           to="what-we-offer"
           smooth={true}
@@ -96,6 +98,7 @@ const LandingPage = () => {
               key={index}
               ref={(el) => (highlightRefs.current[index] = el)}
               className={`highlight ${highlight.side}`}
+              style={{ willChange: "opacity, transform" }} // Apply will-change directly to the element
             >
               <div className="icon">{highlight.icon}</div>
               <h3>{highlight.title}</h3>

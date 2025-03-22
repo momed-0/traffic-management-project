@@ -1,19 +1,12 @@
 {
-<<<<<<< HEAD
   "name": "my-app",
-=======
-  "name": "traffic-cloud",
->>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "cra-template": "1.2.0",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.5.0",
-<<<<<<< HEAD
     "gsap": "^3.12.7",
-=======
->>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
     "leaflet": "^1.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -21,10 +14,7 @@
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
-<<<<<<< HEAD
     "react-scroll": "^1.9.3",
-=======
->>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
     "recharts": "^2.15.1"
   },
   "scripts": {

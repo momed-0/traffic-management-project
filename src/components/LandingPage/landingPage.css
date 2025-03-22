@@ -87,6 +87,7 @@ body {
 }
 
 .highlight {
+  will-change: opacity, transform;
   position: relative;
   width: 45%;
   padding: 20px;
@@ -167,3 +168,5 @@ body {
   background-size: 200% 200%;
   animation: gradientAnimation 10s ease infinite;
 }
+
+
