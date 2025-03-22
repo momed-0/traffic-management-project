@@ -15,7 +15,10 @@ h2 {
   color: #333;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
 h3 {
   font-size: 1.4rem;
   margin-bottom: 15px;
@@ -24,9 +27,12 @@ h3 {
 
 .highlight {
   color: #4A90E2;
+<<<<<<< HEAD
   background-color: #f9f9f9;
   box-shadow: none;
   border: none;
+=======
+>>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
 }
 
 .chart-container {

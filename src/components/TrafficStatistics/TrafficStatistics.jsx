@@ -100,4 +100,8 @@ const TrafficStatistics = ({ data, selectedRoad }) => {
   );
 };
 
+<<<<<<< HEAD
 export default TrafficStatistics;
+=======
+export default TrafficStatistics;
+>>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e

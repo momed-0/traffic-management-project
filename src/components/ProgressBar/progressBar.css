@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Center the progress bar on the screen */
 .progress-bar-container {
   position: fixed;
@@ -17,4 +18,25 @@
   height: 100%;
   background-color: #76c7c0; /* Change color as needed */
   transition: width 0.2s ease-in-out;
+=======
+/* Center the progress bar on the screen */
+.progress-bar-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%; /* 50% of the screen width */
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* Progress bar filling animation */
+.progress-bar {
+  height: 100%;
+  background-color: #76c7c0; /* Change color as needed */
+  transition: width 0.2s ease-in-out;
+>>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
 }

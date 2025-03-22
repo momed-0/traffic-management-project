@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "short_name": "React App",
   "name": "Create React App Sample",
+=======
+  "short_name": "Traffic Cloud",
+  "name": "Traffic Management System Using IoT and Machine Learning",
+>>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e
   "icons": [
     {
       "src": "favicon.ico",
