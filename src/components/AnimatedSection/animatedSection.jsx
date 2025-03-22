@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 
-const AnimatedSection = ({ children, key }) => {
+const AnimatedSection = ({ children, sectionKey }) => {
   const controls = useAnimation();
   const ref = useRef(null);
 
@@ -26,7 +26,7 @@ const AnimatedSection = ({ children, key }) => {
 
     // Cleanup
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [controls, key]); // Add `key` to dependencies to re-trigger on data change
+  }, [controls, sectionKey]); // Use `sectionKey` instead of `key`
 
   return (
     <motion.div

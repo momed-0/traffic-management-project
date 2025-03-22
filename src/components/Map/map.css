@@ -1,5 +1,6 @@
 /* Container for the map and controls */
 .map-container {
+  background-color: aliceblue;
     display: flex;
     justify-content: center;
     padding: 25px;

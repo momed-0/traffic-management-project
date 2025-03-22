@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LandingPage from "./components/landingPage";
+import LandingPage from "./components/LandingPage/landingPage";
 import Header from "./components/Header/header";
 import Map from "./components/Map/map";
 import TimeRangeSelector from "./components/TimeRangeSelector/timeRangeSelector";
@@ -8,11 +8,12 @@ import { initData } from "./components/config";
 import WorkInProgress from "./components/workInProgress";
 import ProgressBar from "./components/ProgressBar/progressBar";
 import AnimatedSection from "./components/AnimatedSection/animatedSection";
+import TrafficStatistics from "./components/TrafficStatistics/TrafficStatistics";
 
 const App = () => {
   const [data, setData] = useState(initData);
   const [loading, setLoading] = useState(false);
-  const [selectedRoad, setSelectedRoad] = useState("palayam");
+  const [selectedRoad, setSelectedRoad] = useState("rajpath");
   const [isAppLoaded, setIsAppLoaded] = useState(false); // Track app loading state
   const [progress, setProgress] = useState(0); // Track progress bar progress
   const [dataKey, setDataKey] = useState(0); // Key to force re-render of AnimatedSection
@@ -79,11 +80,6 @@ const App = () => {
         {isAppLoaded && (
           <>
             <Header />
-            <TimeRangeSelector
-              onFetchData={fetchTrafficData}
-              selectedRoad={selectedRoad}
-              setSelectedRoad={setSelectedRoad}
-            />
             {loading && (
               <div className="loading-overlay">
                 <div className="spinner"></div>
@@ -91,6 +87,7 @@ const App = () => {
               </div>
             )}
             <Routes>
+              {/* Home Page - No TimeRangeSelector */}
               <Route
                 path="/"
                 element={
@@ -99,10 +96,17 @@ const App = () => {
                   </AnimatedSection>
                 }
               />
+
+              {/* Other Routes */}
               <Route
                 path="/traffic-management-project"
                 element={
                   <AnimatedSection key={dataKey}>
+                    <TimeRangeSelector
+                      onFetchData={fetchTrafficData}
+                      selectedRoad={selectedRoad}
+                      setSelectedRoad={setSelectedRoad}
+                    />
                     <LandingPage data={data} />
                   </AnimatedSection>
                 }
@@ -111,6 +115,11 @@ const App = () => {
                 path="/map"
                 element={
                   <AnimatedSection key={dataKey}>
+                    <TimeRangeSelector
+                      onFetchData={fetchTrafficData}
+                      selectedRoad={selectedRoad}
+                      setSelectedRoad={setSelectedRoad}
+                    />
                     <Map key={data.length} vehicleData={data} selectedRoad={selectedRoad} />
                   </AnimatedSection>
                 }
@@ -125,6 +134,27 @@ const App = () => {
               />
               <Route
                 path="/statistics"
+                element={
+                  <AnimatedSection>
+                    <TimeRangeSelector
+                      onFetchData={fetchTrafficData}
+                      selectedRoad={selectedRoad}
+                      setSelectedRoad={setSelectedRoad}
+                    />
+                    <TrafficStatistics data={data} selectedRoad={selectedRoad} />
+                  </AnimatedSection>
+                }
+              />
+              <Route
+                path="/simulation"
+                element={
+                  <AnimatedSection>
+                    <WorkInProgress />
+                  </AnimatedSection>
+                }
+              />
+              <Route
+                path="/traffic"
                 element={
                   <AnimatedSection>
                     <WorkInProgress />
