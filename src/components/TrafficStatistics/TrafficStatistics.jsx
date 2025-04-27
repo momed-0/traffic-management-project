@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import TrafficDataTable from "../Table/trafficDataTable.jsx";
 import { 
@@ -46,7 +48,7 @@ const TrafficStatistics = ({ data, selectedRoad }) => {
 
   return (
     <div className="traffic-statistics">
-      <h2>Traffic Statistics for <span className="highlight">{selectedRoad}</span></h2>
+      <h2>Traffic Statistics for <span className="highlight-1">{selectedRoad}</span></h2>
 
       {/* Bar Chart */}
       <div className="chart-container">
@@ -100,8 +102,4 @@ const TrafficStatistics = ({ data, selectedRoad }) => {
   );
 };
 
-<<<<<<< HEAD
 export default TrafficStatistics;
-=======
-export default TrafficStatistics;
->>>>>>> 14fa9f973e246b166e06a200410a8856421bcd9e

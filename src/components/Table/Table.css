@@ -80,8 +80,8 @@ label {
 /* Table Header Style */
 .table-div-table th {
     padding: 12px 15px;
-    background-color: #c2edce; /* Soft Blue */
-    color: #388087;
+    background-color: #93d2f7; /* Soft Blue */
+    color: #385487;
     font-size: 1rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -93,7 +93,7 @@ label {
 .table-div-table td {
     padding: 12px 15px;
     border-bottom: 1px solid #f4f4f4;
-    color: #388087;
+    color: #295b5f;
     font-size: 0.95rem;
 }
 

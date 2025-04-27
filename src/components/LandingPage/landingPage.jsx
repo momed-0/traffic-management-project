@@ -11,29 +11,25 @@ const LandingPage = () => {
   const highlights = [
     {
       title: "Real-time Traffic Monitoring",
-      description:
-        "Monitor live traffic conditions with real-time updates and visualizations.",
+      description: "Monitor live traffic conditions with real-time updates and visualizations.",
       icon: "🚦",
       side: "left",
     },
     {
       title: "Simulation & Analytics",
-      description:
-        "Run simulations and analyze traffic patterns to optimize road usage.",
+      description: "Run simulations and analyze traffic patterns to optimize road usage.",
       icon: "📊",
       side: "right",
     },
     {
       title: "Statistics",
-      description:
-        "Access detailed traffic statistics and insights for better decision-making.",
+      description: "Access detailed traffic statistics and insights for better decision-making.",
       icon: "📈",
       side: "left",
     },
     {
       title: "Interactive Map",
-      description:
-        "Explore an interactive map with real-time traffic data and route planning.",
+      description: "Explore an interactive map with real-time traffic data and route planning.",
       icon: "🗺️",
       side: "right",
     },
@@ -42,6 +38,12 @@ const LandingPage = () => {
   // Refs for GSAP animations
   const heroRef = useRef(null);
   const highlightRefs = useRef([]);
+  const containerRef = useRef(null);
+
+  // Initialize highlight refs array
+  useEffect(() => {
+    highlightRefs.current = highlightRefs.current.slice(0, highlights.length);
+  }, [highlights]);
 
   // GSAP animations on component mount
   useEffect(() => {
@@ -49,25 +51,33 @@ const LandingPage = () => {
     gsap.from(heroRef.current, {
       opacity: 0,
       y: 50,
-      duration: 1,
-      ease: "power2.out",
+      duration: 1.5,
+      ease: "power3.out",
+      delay: 0.3
     });
 
-    // Highlight cards animation
+    // Highlight cards animation with ScrollTrigger
     highlightRefs.current.forEach((ref, index) => {
       gsap.from(ref, {
         opacity: 0,
-        y: 50,
+        y: 80,
         duration: 1,
-        ease: "power2.out",
+        ease: "back.out(1.7)",
         scrollTrigger: {
-          trigger: ref,
-          start: "top 80%", // Animation starts when the card is 80% in view
-          end: "bottom 20%", // Animation ends when the card is 20% out of view
-          toggleActions: "play none none reverse", // Retrigger animation on scroll up and down
+          trigger: containerRef.current,
+          start: "top 70%",
+          end: "bottom 30%",
+          toggleActions: "play none none none",
+          markers: false, // Set to true for debugging
         },
+        delay: index * 0.15
       });
     });
+
+    // Clean up ScrollTrigger instances
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   return (
@@ -75,7 +85,7 @@ const LandingPage = () => {
       {/* Hero Section */}
       <div ref={heroRef} className="hero-section">
         <h1>Welcome to our Traffic Management System</h1>
-        <p>Smart Traffic Management at Your Fingertips.</p>
+        <p>Modern traffic solutions at your fingertips.</p>
         <Link
           to="what-we-offer"
           smooth={true}
@@ -87,14 +97,14 @@ const LandingPage = () => {
       </div>
 
       {/* What We Offer Section */}
-      <div id="what-we-offer" className="what-we-offer">
+      <div id="what-we-offer" className="what-we-offer" ref={containerRef}>
         <h2>What We Offer</h2>
         <div className="highlights-container">
           <div className="center-line"></div>
           {highlights.map((highlight, index) => (
             <div
               key={index}
-              ref={(el) => (highlightRefs.current[index] = el)}
+              ref={el => (highlightRefs.current[index] = el)}
               className={`highlight ${highlight.side}`}
             >
               <div className="icon">{highlight.icon}</div>
