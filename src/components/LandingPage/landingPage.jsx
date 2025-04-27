@@ -106,6 +106,7 @@ const LandingPage = () => {
               key={index}
               ref={el => (highlightRefs.current[index] = el)}
               className={`highlight ${highlight.side}`}
+              style={{ willChange: "opacity, transform" }} // Apply will-change directly to the element
             >
               <div className="icon">{highlight.icon}</div>
               <h3>{highlight.title}</h3>
