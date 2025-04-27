@@ -84,7 +84,7 @@ const LandingPage = () => {
     <div className="landing-page">
       {/* Hero Section */}
       <div ref={heroRef} className="hero-section">
-        <h1>Welcome to our Traffic Management System</h1>
+        <h1>Welcome to our Digital Twin for traffic management sytem.</h1>
         <p>Modern traffic solutions at your fingertips.</p>
         <Link
           to="what-we-offer"
