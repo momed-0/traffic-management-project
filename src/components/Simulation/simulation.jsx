@@ -81,7 +81,7 @@ const SimulationForm = () => {
     <div className="simulation-form-container">
       <h2>Traffic Simulation</h2>
       <MapContainer 
-            center={[11.259303,75.788866]} 
+            center={[11.255312,75.788919]} 
             zoom={16} 
             zoomControl={false}
             style={{ height: "500px", width: "100%" }}
@@ -95,10 +95,10 @@ const SimulationForm = () => {
         />
 
         {/* Input boxes attached to specific coordinates */}
-        <Marker position={[11.259285,75.784915]} icon={customIcon}>
+        <Marker position={[11.255457,75.785566]} icon={customIcon}>
           <Popup>
             <div>
-              <label>Lane 1:</label>
+              <label>Lane A1:</label>
               <input
                 type="number"
                 value={formData.lane1}
@@ -109,10 +109,10 @@ const SimulationForm = () => {
           </Popup>
         </Marker>
 
-        <Marker position={[11.260050,75.785538]} icon={customIcon}>
+        <Marker position={[11.256168,75.786558]} icon={customIcon}>
           <Popup>
             <div>
-              <label>Lane 2:</label>
+              <label>Lane A2:</label>
               <input
                 type="number"
                 value={formData.lane2}
@@ -123,10 +123,10 @@ const SimulationForm = () => {
           </Popup>
         </Marker>
 
-        <Marker position={[11.258861,75.785871]} icon={customIcon}>
+        <Marker position={[11.254915,75.786364]} icon={customIcon}>
           <Popup>
             <div>
-              <label>Lane 3:</label>
+              <label>Lane A3:</label>
               <input
                 type="number"
                 value={formData.lane3}
@@ -136,10 +136,10 @@ const SimulationForm = () => {
             </div>
           </Popup>
         </Marker>
-        <Marker position={[11.259366,75.786472]} icon={customIcon}>
+        <Marker position={[11.255347,75.787116]} icon={customIcon}>
           <Popup>
             <div>
-              <label>Lane 4:</label>
+              <label>Lane A4:</label>
               <input
                 type="number"
                 value={formData.lane4}
@@ -149,10 +149,10 @@ const SimulationForm = () => {
             </div>
           </Popup>
         </Marker>
-        <Marker position={[11.259066,75.790709]} icon={customIcon}>
+        <Marker position={[11.255278,75.791366]} icon={customIcon}>
           <Popup>
             <div>
-              <label>Lane 5</label>
+              <label>Lane B1</label>
               <input
                 type="number"
                 value={formData.lane5}
@@ -162,10 +162,10 @@ const SimulationForm = () => {
             </div>
           </Popup>
         </Marker>
-        <Marker position={[11.259444,75.791547]} icon={customIcon}>
+        <Marker position={[11.255856,75.791817]} icon={customIcon}>
           <Popup>
             <div>
-              <label>Lane 6:</label>
+              <label>Lane B2:</label>
               <input
                 type="number"
                 value={formData.lane6}
@@ -175,10 +175,10 @@ const SimulationForm = () => {
             </div>
           </Popup>
         </Marker>
-        <Marker position={[11.258150,75.791579]} icon={customIcon}>
+        <Marker position={[11.255284,75.792471]} icon={customIcon}>
           <Popup>
             <div>
-              <label>Lane 7:</label>
+              <label>Lane B3:</label>
               <input
                 type="number"
                 value={formData.lane7}
@@ -188,10 +188,10 @@ const SimulationForm = () => {
             </div>
           </Popup>
         </Marker>
-        <Marker position={[11.259022,75.791739]} icon={customIcon}>
+        <Marker position={[11.254652,75.791923]} icon={customIcon}>
           <Popup>
             <div>
-              <label>Lane 8:</label>
+              <label>Lane B4:</label>
               <input
                 type="number"
                 value={formData.lane8}
