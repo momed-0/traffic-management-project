@@ -151,3 +151,34 @@
     transform: scale(1);
   }
 }
+
+/* Result table container */
+.result-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* Each row in the result table */
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Key styling */
+.result-key {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Value styling */
+.result-value {
+  color: #555;
+  font-size: 14px;
+}

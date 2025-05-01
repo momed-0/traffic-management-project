@@ -222,7 +222,14 @@ const SimulationForm = () => {
               &times;
             </button>
             <h3>Prediction Result</h3>
-            <pre>{JSON.stringify(result, null, 2)}</pre>
+            <div className="result-table">
+                {Object.entries(result).map(([key, value]) => (
+                <div key={key} className="result-row">
+                    <span className="result-key">{key}:</span>
+                    <span className="result-value">{value}</span>
+                </div>
+                ))}
+            </div>
           </div>
         </div>
       )}
