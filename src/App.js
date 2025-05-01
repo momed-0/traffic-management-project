@@ -9,7 +9,7 @@ import WorkInProgress from "./components/workInProgress";
 import ProgressBar from "./components/ProgressBar/progressBar";
 import AnimatedSection from "./components/AnimatedSection/animatedSection";
 import TrafficStatistics from "./components/TrafficStatistics/TrafficStatistics";
-
+import SimulationForm from "./components/Simulation/simulation";
 const App = () => {
   const [data, setData] = useState(initData);
   const [loading, setLoading] = useState(false);
@@ -149,7 +149,7 @@ const App = () => {
                 path="/simulation"
                 element={
                   <AnimatedSection>
-                    <WorkInProgress />
+                    <SimulationForm />
                   </AnimatedSection>
                 }
               />
