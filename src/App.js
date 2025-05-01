@@ -125,14 +125,6 @@ const App = () => {
                 }
               />
               <Route
-                path="/live"
-                element={
-                  <AnimatedSection>
-                    <WorkInProgress />
-                  </AnimatedSection>
-                }
-              />
-              <Route
                 path="/statistics"
                 element={
                   <AnimatedSection>

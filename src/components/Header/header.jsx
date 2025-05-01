@@ -19,12 +19,9 @@ const Header = () => {
           <li>
             <NavLink to="/simulation" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Simulation</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/traffic" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Traffic Management</NavLink>
-          </li>
-          <li>
-            <NavLink to="/live" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Live Map</NavLink>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
