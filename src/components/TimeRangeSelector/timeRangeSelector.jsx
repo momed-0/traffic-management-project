@@ -38,6 +38,14 @@ const TimeRangeSelector = ({ onFetchData, selectedRoad, setSelectedRoad }) => {
           <option value="stadiumJn">Stadium Jn</option>
           <option value="highway">Highway</option>
           <option value="rajpath">Rajpath</option>
+          <option value="StadiumA1">Stadium Jn A</option>
+          <option value="StadiumA2">Stadium Jn B</option>
+          <option value="StadiumA3">Stadium Jn C</option>
+          <option value="StadiumA4">Stadium Jn D</option>
+          <option value="StadiumB1">Puthiyara Jn A</option>
+          <option value="StadiumB2">Puthiyara Jn B</option>
+          <option value="StadiumB3">Puthiyara Jn C</option>
+          <option value="StadiumB4">Puthiyara Jn D</option>
         </select>
       </label>
       {selectedRoad && (
